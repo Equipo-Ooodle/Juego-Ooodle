@@ -16,5 +16,9 @@ public class Pruebas {
 
         registro.registrar();
         registro.registrar();
+        
+        IniciarSesion iniciar = new IniciarSesion();
+        
+        iniciar.iniciarSesion(registro.getUsuarios());
     }
 }
