@@ -18,9 +18,9 @@ public class Usuario {
 	        return contraseña;
 	    }
 =======
-  int num;
-  // numero
+
 
 >>>>>>> branch 'feature-prueba' of https://github.com/Equipo-Ooodle/Juego-Ooodle.git
 }
+
 
