@@ -7,6 +7,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private Stage stage;
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+    public UsuarioDAO getUsuarioDAO() {
+        return usuarioDAO;
+    }
 
     @Override
     public void start(Stage primaryStage) {

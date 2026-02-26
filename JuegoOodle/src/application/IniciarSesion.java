@@ -9,6 +9,8 @@ public class IniciarSesion {
 
     public IniciarSesion(Main main) {
 
+        UsuarioDAO usuarioDAO = main.getUsuarioDAO();
+
         TextField nombre = new TextField();
         nombre.setPromptText("Nombre");
 
@@ -19,18 +21,21 @@ public class IniciarSesion {
         Button volver = new Button("Volver a Registro");
 
         login.setOnAction(e -> {
-            for (Usuario u : Registrarse.getUsuarios()) {
-                if (u.getNombre().equals(nombre.getText()) &&
-                    u.getContraseña().equals(contraseña.getText())) {
 
-                    Alert ok = new Alert(Alert.AlertType.INFORMATION, "Bienvenido " + u.getNombre());
-                    ok.showAndWait();
-                    return;
-                }
+            boolean valido = usuarioDAO.validarLogin(
+                    nombre.getText(),
+                    contraseña.getText()
+            );
+
+            if (valido) {
+                Alert ok = new Alert(Alert.AlertType.INFORMATION,
+                        "Bienvenido " + nombre.getText());
+                ok.showAndWait();
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR,
+                        "Usuario o contraseña incorrectos");
+                error.showAndWait();
             }
-
-            Alert error = new Alert(Alert.AlertType.ERROR, "Usuario o contraseña incorrectos");
-            error.showAndWait();
         });
 
         volver.setOnAction(e -> main.mostrarRegistro());

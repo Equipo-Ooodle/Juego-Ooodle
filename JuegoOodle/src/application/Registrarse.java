@@ -2,62 +2,50 @@ package application;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Registrarse {
     
 	private VBox view;
-    private static List<Usuario> usuarios = new ArrayList<>();
 
-    public Registrarse(Main main) {
+	public Registrarse(Main main) {
+		
+		RegistroController controller =
+		        new RegistroController(main.getUsuarioDAO());
 
-        TextField nombre = new TextField();
-        nombre.setPromptText("Nombre");
+	    UsuarioDAO usuarioDAO = main.getUsuarioDAO();
 
-        PasswordField contraseña = new PasswordField ();
-        contraseña.setPromptText("Contraseña");
+	    TextField nombre = new TextField();
+	    nombre.setPromptText("Nombre");
 
-        Button registrar = new Button("Registrar");
-        Button irLogin = new Button("Ir a inicio de sesión");
+	    PasswordField contraseña = new PasswordField();
+	    contraseña.setPromptText("Contraseña");
 
-        registrar.setOnAction(e -> {
+	    Button registrar = new Button("Registrar");
+	    Button irLogin = new Button("Ir a inicio de sesión");
 
-            String nombreTexto = nombre.getText().trim();
-            String passTexto = contraseña.getText();
+	    registrar.setOnAction(e -> {
 
-            if (nombreTexto.isEmpty()) {
-                mostrarError("El nombre no puede estar vacío");
-                return;
-            }
+	        boolean registrado = controller.registrar(
+	                nombre.getText(),
+	                contraseña.getText()
+	        );
 
-            // Aquí revisamos si el usuario ya existe
-            for (Usuario u : usuarios) {
-                if (u.getNombre().equalsIgnoreCase(nombreTexto)) {
-                    mostrarError("Ese usuario ya existe");
-                    return;
-                }
-            }
+	        if (registrado) {
+	            mostrarInfo("Usuario registrado");
+	        } else {
+	            mostrarError("Nombre o contraseña inválidos o usuario ya existe");
+	        }
+	    });
 
-            // Sino existe antes, se registra
-            usuarios.add(new Usuario(nombreTexto, passTexto));
-            mostrarInfo("Usuario registrado");
+	    irLogin.setOnAction(e -> main.mostrarInicioSesion());
 
-            nombre.clear();
-            contraseña.clear();
-        });
-        irLogin.setOnAction(e -> main.mostrarInicioSesion());
+	    view = new VBox(10, nombre, contraseña, registrar, irLogin);
+	}
+	
+	public VBox getView() {
+	    return view;
+	}
 
-        view = new VBox(10, nombre, contraseña, registrar, irLogin);
-    }
-
-    public VBox getView() {
-        return view;
-    }
-
-    public static List<Usuario> getUsuarios() {
-        return usuarios;
-    }
 
     private void mostrarError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR, mensaje);
