@@ -12,24 +12,25 @@ public class RegistroController {
         this.usuarioDAO = usuarioDAO;
     }
 
-    public boolean registrar(String nombre, String contraseña) {
+    public CasosRegistro registrar (String nombre, String contraseña) {
 
         if (nombre == null || nombre.trim().isEmpty()) {
             logger.warning("Intento de registro con nombre vacío");
-            return false;
+            return CasosRegistro.NombreVacio;
         }
 
         if (contraseña == null || contraseña.trim().isEmpty()) {
             logger.warning("Intento de registro con contraseña vacía para usuario: " + nombre);
-            return false;
+            return CasosRegistro.ContrasenaVacia;
         }
 
         boolean registrado = usuarioDAO.registrarUsuario(nombre, contraseña);
 
         if (!registrado) {
             logger.warning("Intento de registro con usuario ya existente: " + nombre);
+            return CasosRegistro.UsuarioYaExiste;
         }
 
-        return registrado;
+        return CasosRegistro.RegistroExitoso;
     }
 }

@@ -3,8 +3,8 @@ package co.edu.poli.ooodle.modelo;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import co.edu.poli.ooodle.vista.Principal;
-import co.edu.poli.ooodle.modelo.UsuarioDAO;
 import co.edu.poli.ooodle.controller.RegistroController;
+import co.edu.poli.ooodle.controller.CasosRegistro;
 
 public class Registrarse {
     
@@ -15,8 +15,6 @@ public class Registrarse {
 		RegistroController controller =
 		        new RegistroController(main.getUsuarioDAO());
 
-	    UsuarioDAO usuarioDAO = main.getUsuarioDAO();
-
 	    TextField nombre = new TextField();
 	    nombre.setPromptText("Nombre");
 
@@ -24,19 +22,33 @@ public class Registrarse {
 	    contraseña.setPromptText("Contraseña");
 
 	    Button registrar = new Button("Registrar");
-	    Button irLogin = new Button("Ir a inicio de sesión");
+	    Button irLogin = new Button("¿Ya tienes cuenta? Inicia sesión");
 
 	    registrar.setOnAction(e -> {
 
-	        boolean registrado = controller.registrar(
+	        CasosRegistro registrado = controller.registrar(
 	                nombre.getText(),
 	                contraseña.getText()
 	        );
 
-	        if (registrado) {
-	            mostrarInfo("Usuario registrado");
-	        } else {
-	            mostrarError("Nombre o contraseña inválidos o usuario ya existe");
+	        if (registrado == CasosRegistro.NombreVacio) {
+	            mostrarError("Espacio de nombre vacío, ingrese un nombre");
+	            
+	        } 
+	        
+	        else if (registrado == CasosRegistro.ContrasenaVacia){
+	            mostrarError("Espacio de contraseña vacío, ingrese una contraseña");
+	        }
+	        
+	        else if (registrado == CasosRegistro.UsuarioYaExiste) {
+	        	mostrarError("Este nombre de usuario ya existe. Por favor, seleccione uno nuevo");
+	        }
+	        
+	        else if (registrado == CasosRegistro.RegistroExitoso) {
+	        	mostrarInfo("Se ha registrado exitosamente");
+	        	nombre.clear();
+	        	contraseña.clear();
+	        	main.mostrarInicioSesion();
 	        }
 	    });
 

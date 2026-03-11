@@ -22,7 +22,7 @@ public class InicioSesion {
         contraseña.setPromptText("Contraseña");
 
         Button login = new Button("Iniciar Sesión");
-        Button volver = new Button("Volver a Registro");
+        Button volver = new Button("Registrarse");
 
         login.setOnAction(e -> {
 
@@ -33,7 +33,7 @@ public class InicioSesion {
 
             if (valido) {
                 Alert ok = new Alert(Alert.AlertType.INFORMATION,
-                        "Bienvenido " + nombre.getText());
+                        "Bienvenido/a " + nombre.getText());
                 ok.showAndWait();
             } else {
                 Alert error = new Alert(Alert.AlertType.ERROR,
