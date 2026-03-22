@@ -2,12 +2,11 @@ package co.edu.poli.ooodle.vista;
 
 import java.io.*;
 import java.util.*;
+
+import co.edu.poli.ooodle.servicios.UsuarioDAO;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import co.edu.poli.ooodle.modelo.UsuarioDAO;
-import co.edu.poli.ooodle.modelo.Registrarse;
-import co.edu.poli.ooodle.servicios.InicioSesion;
 
 public class Principal extends Application {
 
@@ -25,14 +24,14 @@ public class Principal extends Application {
     }
 
     public void mostrarRegistro() {
-        Registrarse registro = new Registrarse(this);
+        RegistroVista registro = new RegistroVista(this);
         stage.setScene(new Scene(registro.getView(), 400, 300));
         stage.setTitle("Registro");
         stage.show();
     }
 
     public void mostrarInicioSesion() {
-        InicioSesion login = new InicioSesion(this);
+        InicioSesionVista login = new InicioSesionVista(this);
         stage.setScene(new Scene(login.getView(), 400, 300));
         stage.setTitle("Login");
     }

@@ -1,16 +1,15 @@
-package co.edu.poli.ooodle.modelo;
+package co.edu.poli.ooodle.vista;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import co.edu.poli.ooodle.vista.Principal;
 import co.edu.poli.ooodle.controller.RegistroController;
-import co.edu.poli.ooodle.controller.CasosRegistro;
+import co.edu.poli.ooodle.modelo.CasosRegistro;
 
-public class Registrarse {
+public class RegistroVista {
     
 	private VBox view;
 
-	public Registrarse(Principal main) {
+	public RegistroVista(Principal main) {
 		
 		RegistroController controller =
 		        new RegistroController(main.getUsuarioDAO());

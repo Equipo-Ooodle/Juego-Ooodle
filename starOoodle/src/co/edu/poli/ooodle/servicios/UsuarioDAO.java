@@ -1,7 +1,9 @@
-package co.edu.poli.ooodle.modelo;
+package co.edu.poli.ooodle.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.edu.poli.ooodle.modelo.Usuario;
 
 public class UsuarioDAO {
 

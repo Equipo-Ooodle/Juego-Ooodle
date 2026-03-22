@@ -1,8 +1,5 @@
 package co.edu.poli.ooodle.modelo;
 
-import java.io.*;
-import java.util.*;
-
 /**
  * 
  */

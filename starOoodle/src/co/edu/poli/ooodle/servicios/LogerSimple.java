@@ -1,11 +1,11 @@
-package co.edu.poli.ooodle.controller;
+package co.edu.poli.ooodle.servicios;
 
 import java.io.IOException;
 import java.util.logging.*;
 
-public class ErroresLog {
+public class LogerSimple {
 
-    private static final Logger logger = Logger.getLogger(ErroresLog.class.getName());
+    private static final Logger logger = Logger.getLogger(LogerSimple.class.getName());
 
     static {
         try {
