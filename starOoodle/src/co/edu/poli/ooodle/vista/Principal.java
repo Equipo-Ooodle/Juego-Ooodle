@@ -1,8 +1,7 @@
 package co.edu.poli.ooodle.vista;
 
-import java.io.*;
-import java.util.*;
 
+import co.edu.poli.ooodle.servicios.PartidaDAO;
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,9 +11,14 @@ public class Principal extends Application {
 
     private Stage stage;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private PartidaDAO partidaDao = new PartidaDAO();
 
     public UsuarioDAO getUsuarioDAO() {
         return usuarioDAO;
+    }
+    
+    public PartidaDAO getPartidaDao() {
+        return partidaDao;
     }
 
     @Override
@@ -42,8 +46,8 @@ public class Principal extends Application {
         stage.setTitle("Menú Principal");
     }
     
-    public void mostrarPartida() {
-        PartidaVista partida = new PartidaVista(this);
+    public void mostrarPartida(String modo) {
+        PartidaVista partida = new PartidaVista(this, modo);
         partida.mostrar(stage);
     }
 

@@ -1,5 +1,7 @@
 package co.edu.poli.ooodle.vista;
 
+import co.edu.poli.ooodle.servicios.PartidaDAO;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -18,15 +20,29 @@ public class MenuVista {
         Button cerrarSesion = new Button("Cerrar sesión");
 
         practica.setOnAction(e -> {
-            main.mostrarPartida();
+            main.mostrarPartida("practica");
         });
 
         diaria.setOnAction(e -> {
-            main.mostrarPartida();
+            main.mostrarPartida("diaria");
         });
 
         historial.setOnAction(e -> {
-            System.out.println("Historial");
+
+            PartidaDAO partidaDao = main.getPartidaDao();
+
+            Alert historialPopup = new Alert(
+                    Alert.AlertType.INFORMATION
+            );
+
+            historialPopup.setTitle("Historial");
+            historialPopup.setHeaderText("Historial de partidas");
+
+            historialPopup.setContentText(
+                    partidaDao.obtenerHistorial()
+            );
+
+            historialPopup.showAndWait();
         });
 
         cerrarSesion.setOnAction(e -> {

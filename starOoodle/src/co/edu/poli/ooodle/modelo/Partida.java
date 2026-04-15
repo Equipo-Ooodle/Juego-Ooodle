@@ -31,10 +31,9 @@ public class Partida {
     private void generarOperadores() {
         operadores.clear();
 
-        List<String> temp = new ArrayList<>();
-        temp.add("+");
-        temp.add("-");
-        temp.add("*");
+        List<String> temp = new ArrayList<>(
+                List.of(posibles)
+        );
 
         Collections.shuffle(temp);
 

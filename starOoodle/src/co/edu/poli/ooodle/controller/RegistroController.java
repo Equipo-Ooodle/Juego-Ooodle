@@ -3,7 +3,6 @@ package co.edu.poli.ooodle.controller;
 import java.util.logging.Logger;
 
 import co.edu.poli.ooodle.modelo.CasosRegistro;
-import co.edu.poli.ooodle.modelo.Usuario;
 import co.edu.poli.ooodle.servicios.LogerSimple;
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 

@@ -11,12 +11,14 @@ import java.util.List;
 import java.util.Set;
 
 import co.edu.poli.ooodle.modelo.Partida;
+import co.edu.poli.ooodle.servicios.PartidaDAO;
 
 public class PartidaVista {
 
     private final Principal main;
+    private final String modo;
     private final Partida logica = new Partida();
-
+    private final PartidaDAO partidaDao;
     private final List<TextField> campos = new ArrayList<>();
     private final Label estado = new Label();
 
@@ -27,10 +29,14 @@ public class PartidaVista {
     private final Set<Integer> numerosBloqueados = new HashSet<>();
     private final Label contadorIntentos = new Label("Intento 0 de 6");
 
-    public PartidaVista(Principal main) {
+    public PartidaVista(
+            Principal main,
+            String modo
+    ) {
         this.main = main;
+        this.modo = modo;
+        this.partidaDao = main.getPartidaDao();
     }
-
     public void mostrar(Stage stage) {
 
         VBox root = new VBox(15);
@@ -56,7 +62,7 @@ public class PartidaVista {
 
         btnMenu.setOnAction(e -> main.mostrarMenu());
 
-        btnReintentar.setOnAction(e -> main.mostrarPartida());
+        btnReintentar.setOnAction(e -> main.mostrarPartida(modo));;
         btnReintentar.setVisible(false);
 
         root.getChildren().addAll(
@@ -140,11 +146,19 @@ public class PartidaVista {
         );
 
         if (todosVerdes) {
+
             estado.setText(
                     "GANASTE en " +
                     logica.getIntentos() +
                     " intento(s)"
             );
+
+            if (modo.equals("diaria")) {
+                partidaDao.guardarPartida(
+                        logica,
+                        "GANADA"
+                );
+            }
 
             btnIntentar.setDisable(true);
             btnReintentar.setVisible(true);
@@ -157,6 +171,13 @@ public class PartidaVista {
     }
 
     private void perderPartida() {
+
+    	if (modo.equals("diaria")) {
+    	    partidaDao.guardarPartida(
+    	            logica,
+    	            "PERDIDA"
+    	    );
+    	}
 
         estado.setText(
                 "PERDISTE - Solución: " +
