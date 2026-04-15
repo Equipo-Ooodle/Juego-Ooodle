@@ -36,6 +36,8 @@ public class InicioSesionVista {
         	    Alert ok = new Alert(Alert.AlertType.INFORMATION,
         	            "Bienvenido/a " + nombre.getText());
         	    ok.showAndWait();
+
+        	    main.mostrarMenu();
         	} else {
         	    Alert error = new Alert(Alert.AlertType.ERROR,
         	            "Usuario o contraseña incorrectos");

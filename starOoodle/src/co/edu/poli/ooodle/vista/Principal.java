@@ -35,6 +35,17 @@ public class Principal extends Application {
         stage.setScene(new Scene(login.getView(), 400, 300));
         stage.setTitle("Login");
     }
+    
+    public void mostrarMenu() {
+        MenuVista menu = new MenuVista(this);
+        stage.setScene(new Scene(menu.getView(), 500, 350));
+        stage.setTitle("Menú Principal");
+    }
+    
+    public void mostrarPartida() {
+        PartidaVista partida = new PartidaVista(this);
+        partida.mostrar(stage);
+    }
 
     public static void main(String[] args) {
         launch(args);
