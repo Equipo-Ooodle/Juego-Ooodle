@@ -1,13 +1,13 @@
 package co.edu.poli.ooodle.controller;
 
-import java.util.logging.Logger;
+
 
 import co.edu.poli.ooodle.modelo.CasosRegistro;
-import co.edu.poli.ooodle.servicios.LogerSimple;
+
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 
 public class RegistroController {
-	private static final Logger logger = LogerSimple.getLogger();
+
     private UsuarioDAO usuarioDAO;
 
     public RegistroController(UsuarioDAO usuarioDAO) {

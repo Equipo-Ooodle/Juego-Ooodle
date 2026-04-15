@@ -1,6 +1,5 @@
 package co.edu.poli.ooodle.controller;
 
-import co.edu.poli.ooodle.modelo.Usuario;
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 
 public class InicioSesionController {
