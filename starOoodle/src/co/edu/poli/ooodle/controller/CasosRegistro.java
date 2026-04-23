@@ -1,4 +1,4 @@
-package co.edu.poli.ooodle.modelo;
+package co.edu.poli.ooodle.controller;
 
 public enum CasosRegistro {
 	

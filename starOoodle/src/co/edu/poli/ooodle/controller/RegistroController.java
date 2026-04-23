@@ -2,8 +2,6 @@ package co.edu.poli.ooodle.controller;
 
 
 
-import co.edu.poli.ooodle.modelo.CasosRegistro;
-
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 
 public class RegistroController {

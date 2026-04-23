@@ -9,40 +9,44 @@ import java.util.Random;
 public class Partida {
     private final List<Integer> solucion = new ArrayList<>();
     private int intentos = 0;
-    private static final int MAX_INTENTOS = 6;
+    private static final int maxIntentos = 6;
     private final List<String> operadores = new ArrayList<>();
     private final String[] posibles = {"+", "-", "*"};
+    private Usuario usuario;
 
     public Partida() {
         generarPartida();
         generarOperadores();
     }
 
-    private void generarPartida() {
+    private List<Integer> generarPartida() {
         Random random = new Random();
+
         while (solucion.size() < 4) {
             int num = random.nextInt(12) + 1;
             if (!solucion.contains(num)) {
                 solucion.add(num);
             }
         }
+
+        return solucion;
     }
     
-    private void generarOperadores() {
+    private List<String> generarOperadores() {
         operadores.clear();
 
-        List<String> temp = new ArrayList<>(
-                List.of(posibles)
-        );
-
+        List<String> temp = new ArrayList<>(List.of(posibles));
         Collections.shuffle(temp);
 
         operadores.addAll(temp);
+        return operadores;
     }
     
     
 
     public int calcularResultado() {
+    	//Aquí estamos verificando que el programa primero haga la multipliación, como se establece en la matématica real a la hora de hacer
+    	//una operación (dividir o multiplicar > restar o sumar. Todo para evitar resutlados de ecuaciones mal planteados.
         List<Integer> numeros = new ArrayList<>(solucion);
         List<String> ops = new ArrayList<>(operadores);
 
@@ -101,8 +105,9 @@ public class Partida {
         return true;
     }
 
-    public void sumarIntento() {
+    public int sumarIntento() {
         intentos++;
+        return intentos;
     }
 
     public int getIntentos() {
@@ -110,10 +115,18 @@ public class Partida {
     }
 
     public int getMaxIntentos() {
-        return MAX_INTENTOS;
+        return maxIntentos;
     }
 
     public List<Integer> getSolucion() {
         return solucion;
+    }
+    
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

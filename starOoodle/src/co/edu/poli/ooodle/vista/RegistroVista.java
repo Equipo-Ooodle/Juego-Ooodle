@@ -2,8 +2,8 @@ package co.edu.poli.ooodle.vista;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import co.edu.poli.ooodle.controller.CasosRegistro;
 import co.edu.poli.ooodle.controller.RegistroController;
-import co.edu.poli.ooodle.modelo.CasosRegistro;
 
 public class RegistroVista {
     
