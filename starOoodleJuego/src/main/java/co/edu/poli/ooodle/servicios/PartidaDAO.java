@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import co.edu.poli.ooodle.modelo.Partida;
 
-public class PartidaDAO {
+public class PartidaDAO  {
 
     public boolean guardarPartida(Partida partida, String resultado, int usuarioId) {
 
