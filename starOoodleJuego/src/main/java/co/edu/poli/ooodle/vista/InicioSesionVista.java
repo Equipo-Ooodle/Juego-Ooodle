@@ -1,8 +1,7 @@
 package co.edu.poli.ooodle.vista;
 
-
-
 import co.edu.poli.ooodle.controller.InicioSesionController;
+import co.edu.poli.ooodle.modelo.Usuario;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
@@ -10,9 +9,7 @@ public class InicioSesionVista {
 
     private VBox view;
 
-    public InicioSesionVista(Principal main) {
-    	
-    	InicioSesionController controller = new InicioSesionController(main.getUsuarioDAO());
+    public InicioSesionVista(Principal main, InicioSesionController controller) {
 
         TextField nombre = new TextField();
         nombre.setPromptText("Nombre");
@@ -22,30 +19,24 @@ public class InicioSesionVista {
 
         Button login = new Button("Iniciar Sesión");
         Button volver = new Button("Registrarse");
-        
-        
 
         login.setOnAction(e -> {
 
-            int id = controller.obtenerId(
+            Usuario usuario = controller.autenticar(
                     nombre.getText(),
                     contraseña.getText()
             );
 
-            if (id != -1) {
+            if (usuario != null) {
 
-                main.setUsuarioActualId(id); // 👈 AQUÍ está la clave
+                main.setUsuarioActual(usuario);
 
-                Alert ok = new Alert(Alert.AlertType.INFORMATION,
-                        "Bienvenido/a " + nombre.getText());
-                ok.showAndWait();
+                mostrarInfo("Bienvenido/a " + usuario.getNombre());
 
                 main.mostrarMenu();
 
             } else {
-                Alert error = new Alert(Alert.AlertType.ERROR,
-                        "Usuario o contraseña incorrectos");
-                error.showAndWait();
+                mostrarError("Usuario o contraseña incorrectos");
             }
         });
 
@@ -56,5 +47,13 @@ public class InicioSesionVista {
 
     public VBox getView() {
         return view;
+    }
+
+    private void mostrarError(String mensaje) {
+        new Alert(Alert.AlertType.ERROR, mensaje).showAndWait();
+    }
+
+    private void mostrarInfo(String mensaje) {
+        new Alert(Alert.AlertType.INFORMATION, mensaje).showAndWait();
     }
 }

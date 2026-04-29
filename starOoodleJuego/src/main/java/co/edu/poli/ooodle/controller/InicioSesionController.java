@@ -1,5 +1,7 @@
 package co.edu.poli.ooodle.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
+import co.edu.poli.ooodle.modelo.Usuario;
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 
 public class InicioSesionController {
@@ -10,12 +12,14 @@ public class InicioSesionController {
         this.usuarioDAO = usuarioDAO;
     }
 
-    public boolean autenticar(String nombre, String contraseña) {
-        return usuarioDAO.validarLogin(nombre, contraseña);
+    public Usuario autenticar(String nombre, String contraseña) {
+
+        Usuario u = usuarioDAO.buscarPorNombre(nombre);
+
+        if (u != null && BCrypt.checkpw(contraseña, u.getContraseña())) {
+            return u;
+        }
+
+        return null;
     }
-    
-    public int obtenerId(String nombre, String contraseña) {
-        return usuarioDAO.obtenerIdUsuario(nombre, contraseña);
-    }
-        
 }

@@ -9,10 +9,7 @@ public class RegistroVista {
     
 	private VBox view;
 
-	public RegistroVista(Principal main) {
-		
-		RegistroController controller =
-		        new RegistroController(main.getUsuarioDAO());
+	public RegistroVista(Principal main, RegistroController controller) {
 
 	    TextField nombre = new TextField();
 	    nombre.setPromptText("Nombre");

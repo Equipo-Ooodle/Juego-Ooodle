@@ -12,4 +12,5 @@ module starOoodleJuego {
     exports co.edu.poli.ooodle.vista;
     exports co.edu.poli.ooodle.modelo;
     exports co.edu.poli.ooodle.servicios;
+    exports co.edu.poli.ooodle.controller;
 }

@@ -5,6 +5,7 @@ public enum CasosRegistro {
 	NombreVacio,
 	ContrasenaVacia,
 	UsuarioYaExiste,
-	RegistroExitoso
+	RegistroExitoso,
+	Error
 
 }

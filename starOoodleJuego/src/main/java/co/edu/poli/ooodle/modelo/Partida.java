@@ -13,6 +13,7 @@ public class Partida {
     private final List<String> operadores = new ArrayList<>();
     private final String[] posibles = {"+", "-", "*"};
     private Usuario usuario;
+    private String resultado;
 
     public Partida() {
         generarPartida();
@@ -116,6 +117,11 @@ public class Partida {
     public int getIntentos() {
         return intentos;
     }
+    
+    public Partida setIntentos(int intentos) {
+        this.intentos = intentos;
+        return this;
+    }
 
     public int getMaxIntentos() {
         return maxIntentos;
@@ -125,11 +131,27 @@ public class Partida {
         return solucion;
     }
     
+    public Partida setSolucion(List<Integer> nuevaSolucion) {
+        this.solucion.clear();
+        this.solucion.addAll(nuevaSolucion);
+        return this;
+    }
+    
+    public String getResultado() {
+        return resultado;
+    }
+    
+    public Partida setResultado(String resultado) {
+        this.resultado = resultado;
+        return this;
+    }
+    
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public Partida setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        return this;
     }
 }
