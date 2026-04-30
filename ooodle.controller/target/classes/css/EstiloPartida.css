@@ -1,0 +1,39 @@
+/* Tablero */
+.tablero-campo {
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+}
+
+.numero-ingresado {
+    -fx-background-color: #e3f2fd;
+    -fx-font-weight: bold;
+}
+
+/* Feedback */
+.feedback-verde {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.feedback-amarillo {
+    -fx-background-color: #FFC107;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.feedback-gris {
+    -fx-background-color: #9E9E9E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Resultados */
+.resultado-visible {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
