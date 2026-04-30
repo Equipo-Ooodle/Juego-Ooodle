@@ -8,7 +8,7 @@ import co.edu.poli.ooodle.modelo.Usuario;
 
 public class UsuarioDAO implements CRUD<Usuario> {
 
-    // 🔹 CREATE (registro)
+    
     @Override
     public String create(Usuario u) throws Exception {
 
@@ -29,7 +29,7 @@ public class UsuarioDAO implements CRUD<Usuario> {
         }
     }
 
-    // 🔹 Buscar por nombre (CLAVE para login)
+    
     public Usuario buscarPorNombre(String nombre) {
 
         String sql = "SELECT * FROM usuario WHERE nombre = ?";
@@ -59,7 +59,7 @@ public class UsuarioDAO implements CRUD<Usuario> {
         return buscarPorNombre(nombre) != null;
     }
 
-    // 🔹 READ ONE
+    
     @Override
     public Usuario readone(Object id) throws Exception {
 
@@ -83,7 +83,7 @@ public class UsuarioDAO implements CRUD<Usuario> {
         return null;
     }
 
-    // 🔹 READ ALL
+    
     @Override
     public List<Usuario> readall() throws Exception {
 
