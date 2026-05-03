@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.poli.ooodle.controller.MenuController"
+            stylesheets="@../css/instruccionesMenu.css">
+
+    <!-- 🔵 Barra superior -->
+    <top>
+        <HBox prefHeight="40"
+              style="-fx-background-color: #4b1c71;" />
+    </top>
+
+    <!-- 📦 Contenido -->
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="25"
+              style="-fx-background-color: #f4f6f8;">
+
+            <padding>
+                <Insets top="40" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <children>
+
+                <!-- 🟣 TÍTULO -->
+                <Label text="Menú Principal"
+                       maxWidth="Infinity"
+                       alignment="CENTER"
+                       style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                    <font>
+                        <Font size="30"/>
+                    </font>
+                </Label>
+
+                <!-- 🔘 BOTONES -->
+                <VBox alignment="CENTER" spacing="15">
+
+                    <Button text="Modo práctica"
+                            onAction="#handlePractica"
+                            prefWidth="280"
+                            style="-fx-background-color: #b57edc; -fx-text-fill: #0e0d15;">
+                        <font>
+                            <Font size="16"/>
+                        </font>
+                    </Button>
+
+                    <Button text="Partida diaria"
+                            onAction="#handleDiaria"
+                            prefWidth="280"
+                            style="-fx-background-color: #b57edc; -fx-text-fill: #0e0d15;">
+                        <font>
+                            <Font size="16"/>
+                        </font>
+                    </Button>
+
+                    <Button text="Historial de partidas"
+                            onAction="#handleHistorial"
+                            prefWidth="280"
+                            style="-fx-background-color: #b57edc; -fx-text-fill: #0e0d15;">
+                        <font>
+                            <Font size="16"/>
+                        </font>
+                    </Button>
+
+                    <Button text="Cerrar sesión"
+                            onAction="#handleCerrarSesion"
+                            prefWidth="280"
+                            style="-fx-background-color: transparent; -fx-text-fill: #4b1c71;">
+                        <font>
+                            <Font size="16"/>
+                        </font>
+                    </Button>
+
+                </VBox>
+
+                <!-- 📘 INSTRUCCIONES -->
+                <VBox styleClass="card-instrucciones"
+                      alignment="CENTER"
+                      spacing="8"
+                      maxWidth="500">
+
+                    <Label text="¿Cómo jugar?"
+                           styleClass="titulo-instrucciones"/>
+
+                    <Label text="• Solo puedes usar números del 1 al 12"/>
+                    <Label text="• No puedes repetir números en un mismo intento"/>
+                    <Label text="• Tienes un máximo de 6 intentos"/>
+                    <Label text="• Presiona el botón azul (Check) para validar"/>
+
+                    <Label text="COLORES:"
+                           styleClass="subtitulo"/>
+
+                    <Label text="Verde: número correcto en posición correcta"/>
+                    <Label text="Amarillo: número correcto en posición incorrecta"/>
+                    <Label text="Gris: número no está en la ecuación"/>
+
+                </VBox>
+
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

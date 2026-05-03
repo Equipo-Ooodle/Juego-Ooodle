@@ -1,0 +1,116 @@
+/* 🎯 CAMPOS (casillas tipo Wordle) */
+.campo {
+    -fx-alignment: center;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+}
+
+/* 🟢 CORRECTO */
+.verde {
+    -fx-background-color: lightgreen;
+}
+
+/* 🟡 POSICIÓN INCORRECTA */
+.amarillo {
+    -fx-background-color: khaki;
+}
+
+/* ⚪ NO EXISTE */
+.gris {
+    -fx-background-color: lightgray;
+}
+
+/* 🔢 BOTONES DEL TECLADO */
+.tecla {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15;
+    -fx-pref-width: 70;
+    -fx-pref-height: 60;
+}
+
+/* 🎨 COLORES DEL TECLADO */
+.tecla-verde {
+    -fx-background-color: lightgreen;
+}
+
+.tecla-amarillo {
+    -fx-background-color: khaki;
+}
+
+.tecla-gris {
+    -fx-background-color: lightgray;
+}
+
+/* ➕ OPERADORES ENTRE CASILLAS */
+.operador {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+/* 🎯 RESULTADO DE LA ECUACIÓN */
+.resultado {
+    -fx-background-color: #FF9DDA;
+    -fx-text-fill: black;
+    -fx-padding: 8 12;
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+}
+
+/* 🔵 TÍTULO */
+.titulo {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* 🔘 BOTÓN ICONO (🏠) */
+.btn-icon {
+    -fx-font-size: 18px;
+    -fx-background-radius: 10;
+}
+
+/* 🔄 BOTÓN RESTART */
+.btn-restart {
+    -fx-background-color: #ff7675;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+/* ✅ BOTÓN CHECK */
+.btn-check {
+    -fx-background-color: #74b9ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+/* ❌ BOTÓN DELETE */
+.btn-delete {
+    -fx-background-color: #636e72;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+/* 📊 TEXTO DE INTENTOS */
+.intentos {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* 📢 ESTADO (GANASTE / PERDISTE) */
+.estado {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* 🧩 PANEL DEL TECLADO */
+.panel-teclado {
+    -fx-padding: 20;
+}

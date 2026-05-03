@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.poli.ooodle.controller.PartidaController"
+            stylesheets="@../css/estiloPartida.css"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- 🔵 HEADER -->
+    <top>
+        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+
+            <children>
+
+                <Button text="🏠"
+                        onAction="#handleMenu"
+                        styleClass="btn-icon"/>
+
+                <Label text="Ooodle"
+                       styleClass="titulo"
+                       HBox.hgrow="ALWAYS"
+                       alignment="CENTER"/>
+
+                <Button text="Restart"
+                        fx:id="btnReintentar"
+                        onAction="#handleReintentar"
+                        visible="false"
+                        styleClass="btn-restart"/>
+
+            </children>
+        </HBox>
+    </top>
+
+    <!-- 🎮 CENTRO -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+
+            <Label fx:id="lblEcuacion" visible="false"/>
+
+            <!-- 🔥 TABLERO DINÁMICO -->
+            <VBox fx:id="contenedorTablero"
+                  alignment="CENTER"
+                  spacing="10"/>
+
+            <Label fx:id="lblIntentos" styleClass="intentos"/>
+            <Label fx:id="lblEstado" styleClass="estado"/>
+
+        </VBox>
+    </center>
+
+    <!-- 🔢 TECLADO -->
+    <right>
+        <VBox alignment="CENTER" spacing="25" styleClass="panel-teclado">
+
+            <HBox spacing="20" alignment="CENTER">
+
+                <Button text="Check"
+                        onAction="#handleIntentar"
+                        prefWidth="120" prefHeight="60"
+                        styleClass="btn-check"/>
+
+                <Button text="Del"
+                        onAction="#handleDelete"
+                        prefWidth="60" prefHeight="60"
+                        styleClass="btn-delete"/>
+
+            </HBox>
+
+            <GridPane hgap="15" vgap="15" alignment="CENTER">
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="85"/>
+                    <ColumnConstraints prefWidth="85"/>
+                    <ColumnConstraints prefWidth="85"/>
+                </columnConstraints>
+
+                <Button fx:id="btn10" text="10" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Button fx:id="btn11" text="11" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Button fx:id="btn12" text="12" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+                <Button fx:id="btn7" text="7" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Button fx:id="btn8" text="8" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Button fx:id="btn9" text="9" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+                <Button fx:id="btn4" text="4" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Button fx:id="btn5" text="5" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Button fx:id="btn6" text="6" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+
+                <Button fx:id="btn1" text="1" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Button fx:id="btn2" text="2" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Button fx:id="btn3" text="3" onAction="#handleNumero" styleClass="tecla" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+
+            </GridPane>
+
+        </VBox>
+    </right>
+
+</BorderPane>

@@ -8,6 +8,7 @@ module starOoodleJuego {
     requires jbcrypt;
 
     opens co.edu.poli.ooodle.vista to javafx.fxml;
+    opens co.edu.poli.ooodle.controller to javafx.fxml;
 
     exports co.edu.poli.ooodle.vista;
     exports co.edu.poli.ooodle.modelo;

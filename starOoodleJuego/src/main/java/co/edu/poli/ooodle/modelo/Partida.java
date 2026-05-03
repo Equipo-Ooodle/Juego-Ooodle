@@ -137,6 +137,7 @@ public class Partida {
         return this;
     }
     
+    
     public String getResultado() {
         return resultado;
     }
@@ -154,4 +155,10 @@ public class Partida {
         this.usuario = usuario;
         return this;
     }
+    
+    public List<String> getOperadores() {
+        return operadores;
+    }
+
+   
 }

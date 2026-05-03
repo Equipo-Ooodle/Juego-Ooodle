@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="432.0" prefWidth="750.0"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.poli.ooodle.controller.InicioSesionController">
+
+    <!-- 🔵 Barra superior -->
+    <top>
+        <HBox prefHeight="40"
+              style="-fx-background-color: #4b1c71;" />
+    </top>
+
+    <!-- 📦 Contenido -->
+    <center>
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
+              style="-fx-background-color: #f4f6f8;">
+
+            <padding>
+                <Insets top="30" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <children>
+
+                <!-- 🟣 TÍTULO -->
+                <Label text="Inicio de sesión"
+                       maxWidth="Infinity"
+                       alignment="CENTER"
+                       style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                    <font>
+                        <Font size="30"/>
+                    </font>
+                </Label>
+
+                <!-- 🧩 FORMULARIO -->
+                <VBox alignment="CENTER" spacing="10">
+
+                    <TextField fx:id="txtNombre"
+                               prefWidth="250"
+                               promptText="Nombre"/>
+
+                    <PasswordField fx:id="txtContrasena"
+                                   prefWidth="250"
+                                   promptText="Contraseña"/>
+                </VBox>
+
+                <!-- 🔘 BOTONES -->
+                <VBox alignment="CENTER" spacing="10">
+
+                    <Button text="Iniciar sesión"
+                            onAction="#handleLogin"
+                            prefWidth="250"
+                            style="-fx-background-color: #b57edc; -fx-text-fill: #0e0d15;">
+                        <font>
+                            <Font size="18"/>
+                        </font>
+                    </Button>
+
+                    <Button text="¿No tienes cuenta? Regístrate"
+                            onAction="#handleIrRegistro"
+                            prefWidth="250"
+                            style="-fx-background-color: transparent; -fx-text-fill: #4b1c71;">
+                        <font>
+                            <Font size="16"/>
+                        </font>
+                    </Button>
+
+                </VBox>
+
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
