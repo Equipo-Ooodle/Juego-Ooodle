@@ -19,29 +19,31 @@ public class Partida {
     public Partida(Usuario usuario) {
         this.usuario = usuario;
         this.intentos = 0;
-        this.solucion = generarSolucion();
-        this.operadores = generarOperadores();
+        this.solucion = generarSolucion();     
+        this.operadores = generarOperadores(); 
     }
 
     public Partida(Usuario usuario, List<Integer> solucion, int intentos, String resultado) {
         this.usuario = usuario;
         this.solucion = new ArrayList<>(solucion);
-        this.operadores = generarOperadores(); // o cargar si luego decides guardarlos
+        this.operadores = generarOperadores(); 
         this.intentos = intentos;
         this.resultado = resultado;
     }
 
     private List<Integer> generarSolucion() {
         Random random = new Random();
+        List<Integer> nums = new ArrayList<>();
 
-        while (solucion.size() < 4) {
+        while (nums.size() < 4) {
             int num = random.nextInt(12) + 1;
-            if (!solucion.contains(num)) {
-                solucion.add(num);
+
+            if (!nums.contains(num)) {
+                nums.add(num);
             }
         }
 
-        return solucion;
+        return nums;
     }
     
     private List<String> generarOperadores() {
