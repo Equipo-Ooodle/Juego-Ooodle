@@ -67,7 +67,6 @@ public class PartidaController {
         mapaBotones.put(12, btn12);
     }
 
-    // 🔥 TABLERO DINÁMICO
     private void crearTablero() {
 
         contenedorTablero.getChildren().clear();
@@ -89,8 +88,35 @@ public class PartidaController {
                 campo.setPrefSize(75, 75);
                 campo.getStyleClass().add("campo");
 
-                campo.setEditable(true);
+                // ✅ Solo fila actual editable
+                campo.setEditable(i == filaActual);
                 campo.setFocusTraversable(false);
+
+                // 🔥 Validación: solo números 1–12
+                campo.textProperty().addListener((obs, oldVal, newVal) -> {
+
+                    // Permitir borrar
+                    if (newVal.isEmpty()) return;
+
+                    // Solo dígitos
+                    if (!newVal.matches("\\d+")) {
+                        campo.setText(oldVal);
+                        mostrarAlerta("Solo se permiten números");
+                        return;
+                    }
+
+                    try {
+                        int valor = Integer.parseInt(newVal);
+
+                        if (valor < 1 || valor > 12) {
+                            campo.setText(oldVal);
+                            mostrarAlerta("Solo números del 1 al 12");
+                        }
+
+                    } catch (NumberFormatException e) {
+                        campo.setText(oldVal);
+                    }
+                });
 
                 camposFila.add(campo);
                 fila.getChildren().add(campo);
@@ -112,6 +138,18 @@ public class PartidaController {
 
             tablero.add(camposFila);
             contenedorTablero.getChildren().add(fila);
+        }
+    }
+    
+    private void mostrarAlerta(String mensaje) {
+        new Alert(Alert.AlertType.WARNING, mensaje).showAndWait();
+    }
+    
+    private void actualizarFilasEditables() {
+        for (int i = 0; i < tablero.size(); i++) {
+            for (TextField campo : tablero.get(i)) {
+                campo.setEditable(i == filaActual);
+            }
         }
     }
 
@@ -189,26 +227,32 @@ public class PartidaController {
         List<TextField> fila = tablero.get(filaActual);
         Set<Integer> usados = new HashSet<>();
 
-        // VALIDACIÓN
+        // ✅ VALIDACIÓN
         for (TextField campo : fila) {
 
             try {
                 int valor = Integer.parseInt(campo.getText());
 
+                // 🔥 RANGO
+                if (valor < 1 || valor > 12) {
+                    mostrarAlerta("Solo números del 1 al 12");
+                    return;
+                }
+
                 if (usados.contains(valor)) {
-                    lblEstado.setText("No puedes repetir números");
+                    mostrarAlerta("No puedes repetir números");
                     return;
                 }
 
                 if (numerosBloqueados.contains(valor)) {
-                    lblEstado.setText("Número bloqueado: " + valor);
+                    mostrarAlerta("Número bloqueado: " + valor);
                     return;
                 }
 
                 usados.add(valor);
 
             } catch (Exception e) {
-                lblEstado.setText("Completa la fila");
+                mostrarAlerta("Completa la fila");
                 return;
             }
         }
@@ -261,6 +305,9 @@ public class PartidaController {
             btnReintentar.setVisible(true);
             return;
         }
+
+        // 🔥 Actualizar filas activas
+        actualizarFilasEditables();
 
         lblIntentos.setText("Intento " + (filaActual + 1) + " de " + MAX_FILAS);
     }
