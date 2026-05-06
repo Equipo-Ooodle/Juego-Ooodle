@@ -1,26 +1,37 @@
 package co.edu.poli.ooodle.modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 
 public class Partida {
-    private final List<Integer> solucion = new ArrayList<>();
+	private final List<Integer> solucion;
     private int intentos = 0;
     private static final int maxIntentos = 6;
-    private final List<String> operadores = new ArrayList<>();
+    private final List<String> operadores;
     private final String[] posibles = {"+", "-", "*"};
-    private Usuario usuario;
+    private final Usuario usuario;
     private String resultado;
-
-    public Partida() {
-        generarPartida();
-        generarOperadores();
+    
+    public Partida(Usuario usuario) {
+        this.usuario = usuario;
+        this.intentos = 0;
+        this.solucion = generarSolucion();
+        this.operadores = generarOperadores();
     }
 
-    private List<Integer> generarPartida() {
+    public Partida(Usuario usuario, List<Integer> solucion, int intentos, String resultado) {
+        this.usuario = usuario;
+        this.solucion = new ArrayList<>(solucion);
+        this.operadores = generarOperadores(); // o cargar si luego decides guardarlos
+        this.intentos = intentos;
+        this.resultado = resultado;
+    }
+
+    private List<Integer> generarSolucion() {
         Random random = new Random();
 
         while (solucion.size() < 4) {
@@ -34,16 +45,11 @@ public class Partida {
     }
     
     private List<String> generarOperadores() {
-        operadores.clear();
 
-        List<String> temp = new ArrayList<>();
-        for (String op : posibles) {
-            temp.add(op);
-        }
-        Collections.shuffle(temp);
+        List<String> ops = new ArrayList<>(Arrays.asList(posibles));
+        Collections.shuffle(ops);
 
-        operadores.addAll(temp);
-        return operadores;
+        return ops;
     }
     
     
@@ -118,46 +124,37 @@ public class Partida {
         return intentos;
     }
     
-    public Partida setIntentos(int intentos) {
-        this.intentos = intentos;
-        return this;
-    }
+    
 
     public int getMaxIntentos() {
         return maxIntentos;
     }
 
     public List<Integer> getSolucion() {
-        return solucion;
+        return new ArrayList<>(solucion); 
     }
     
-    public Partida setSolucion(List<Integer> nuevaSolucion) {
-        this.solucion.clear();
-        this.solucion.addAll(nuevaSolucion);
-        return this;
-    }
+    
     
     
     public String getResultado() {
         return resultado;
     }
     
-    public Partida setResultado(String resultado) {
-        this.resultado = resultado;
-        return this;
-    }
+    
     
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public Partida setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-        return this;
-    }
     
     public List<String> getOperadores() {
-        return operadores;
+        return new ArrayList<>(operadores); // 👈 copia
+    }
+    
+    public Partida setResultado(String resultado) {
+        this.resultado = resultado;
+        return this;
     }
 
    

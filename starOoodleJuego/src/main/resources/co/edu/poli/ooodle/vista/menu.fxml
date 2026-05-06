@@ -95,7 +95,7 @@
                     <Label text="COLORES:"
                            styleClass="subtitulo"/>
 
-                    <Label text="Verde: número correcto en posición correcta"/>
+                    <Label text="Verde: número en la posición correcta"/>
                     <Label text="Amarillo: número correcto en posición incorrecta"/>
                     <Label text="Gris: número no está en la ecuación"/>
 

@@ -42,15 +42,15 @@ public class PartidaDAO implements CRUD<Partida> {
 
             if (rs.next()) {
 
-                Partida p = new Partida();
+            	Usuario u = new Usuario();
+            	u.setId(rs.getInt("usuario_id"));
 
-                p.setResultado(rs.getString("resultado"));
-                p.setIntentos(rs.getInt("intentos"));
-                p.setSolucion(convertirStringALista(rs.getString("solucion")));
-
-                Usuario u = new Usuario();
-                u.setId(rs.getInt("usuario_id"));
-                p.setUsuario(u);
+            	Partida p = new Partida(
+            	    u,
+            	    convertirStringALista(rs.getString("solucion")),
+            	    rs.getInt("intentos"),
+            	    rs.getString("resultado")
+            	);
 
                 return p;
             }
@@ -73,15 +73,15 @@ public class PartidaDAO implements CRUD<Partida> {
 
             while (rs.next()) {
 
-                Partida p = new Partida();
+            	Usuario u = new Usuario();
+            	u.setId(rs.getInt("usuario_id"));
 
-                p.setResultado(rs.getString("resultado"));
-                p.setIntentos(rs.getInt("intentos"));
-                p.setSolucion(convertirStringALista(rs.getString("solucion")));
-
-                Usuario u = new Usuario();
-                u.setId(rs.getInt("usuario_id"));
-                p.setUsuario(u);
+            	Partida p = new Partida(
+            	    u,
+            	    convertirStringALista(rs.getString("solucion")),
+            	    rs.getInt("intentos"),
+            	    rs.getString("resultado")
+            	);
 
                 lista.add(p);
             }
@@ -105,15 +105,15 @@ public class PartidaDAO implements CRUD<Partida> {
 
             while (rs.next()) {
 
-                Partida p = new Partida();
+            	Usuario u = new Usuario();
+            	u.setId(rs.getInt("usuario_id"));
 
-                p.setResultado(rs.getString("resultado"));
-                p.setIntentos(rs.getInt("intentos"));
-                p.setSolucion(convertirStringALista(rs.getString("solucion")));
-
-                Usuario u = new Usuario();
-                u.setId(rs.getInt("usuario_id"));
-                p.setUsuario(u);
+            	Partida p = new Partida(
+            	    u,
+            	    convertirStringALista(rs.getString("solucion")),
+            	    rs.getInt("intentos"),
+            	    rs.getString("resultado")
+            	);
 
                 lista.add(p);
             }

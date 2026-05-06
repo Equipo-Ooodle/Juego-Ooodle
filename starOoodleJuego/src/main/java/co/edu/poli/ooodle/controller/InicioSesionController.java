@@ -2,9 +2,10 @@ package co.edu.poli.ooodle.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.mindrot.jbcrypt.BCrypt;
+
 
 import co.edu.poli.ooodle.modelo.Usuario;
+import co.edu.poli.ooodle.servicios.Encriptacion;
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 import co.edu.poli.ooodle.vista.Principal;
 
@@ -58,7 +59,7 @@ public class InicioSesionController {
 
         Usuario u = usuarioDAO.buscarPorNombre(nombre);
 
-        if (u != null && BCrypt.checkpw(contraseña, u.getContraseña())) {
+        if (u != null && Encriptacion.verificar(contraseña, u.getContraseña())) {
             return u;
         }
 

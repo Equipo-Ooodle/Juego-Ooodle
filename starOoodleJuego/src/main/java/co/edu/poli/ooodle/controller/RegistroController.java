@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import co.edu.poli.ooodle.modelo.Usuario;
+import co.edu.poli.ooodle.servicios.Encriptacion;
 import co.edu.poli.ooodle.servicios.UsuarioDAO;
 import co.edu.poli.ooodle.vista.Principal;
 
@@ -73,7 +74,7 @@ public class RegistroController {
         }
 
         try {
-            String hash = BCrypt.hashpw(contraseña, BCrypt.gensalt(12));
+        	String hash = Encriptacion.hash(contraseña);
             Usuario nuevo = new Usuario(0, nombre, hash);
 
             String resultado = usuarioDAO.create(nuevo);

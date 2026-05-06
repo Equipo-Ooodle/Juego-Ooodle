@@ -17,7 +17,6 @@ public class PartidaController {
 
     private Partida logica;
     private PartidaDAO partidaDAO;
-    private Usuario usuario;
     private String modo;
     private Principal main;
 
@@ -48,9 +47,8 @@ public class PartidaController {
 
     public void inicializar(PartidaDAO dao, Usuario usuario, String modo) {
         this.partidaDAO = dao;
-        this.usuario = usuario;
         this.modo = modo;
-        this.logica = new Partida();
+        this.logica = new Partida(usuario);
     }
 
     @FXML
@@ -273,7 +271,7 @@ public class PartidaController {
         if (!"diaria".equalsIgnoreCase(modo)) return;
 
         try {
-            logica.setUsuario(usuario);
+            
             logica.setResultado(resultado);
             partidaDAO.create(logica);
         } catch (Exception e) {
