@@ -89,7 +89,7 @@ public class Principal extends Application {
             controller.setMain(this);
             controller.setPartidaDAO(partidaDAO);
 
-            stage.setScene(new Scene(root, 500, 350));
+            stage.setScene(new Scene(root, 1000, 700));
             stage.setTitle("Menú Principal");
 
         } catch (Exception e) {
