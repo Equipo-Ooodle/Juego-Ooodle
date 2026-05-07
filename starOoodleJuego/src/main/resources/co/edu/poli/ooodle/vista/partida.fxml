@@ -22,6 +22,11 @@
                        styleClass="titulo"
                        HBox.hgrow="ALWAYS"
                        alignment="CENTER"/>
+                       
+                <Button text="❓"
+        onAction="#handleInstrucciones"
+        styleClass="btn-ayuda"/>
+                       
 
                 <Button text="Restart"
                         fx:id="btnReintentar"

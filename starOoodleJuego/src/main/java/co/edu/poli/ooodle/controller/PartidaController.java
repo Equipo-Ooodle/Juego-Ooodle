@@ -141,6 +141,35 @@ public class PartidaController {
         }
     }
     
+    @FXML
+    private void handleInstrucciones() {
+
+        String mensaje = """
+                • Usa números del 1 al 12
+                • No puedes repetir números
+                • Tienes 6 intentos
+
+                COLORES:
+
+                - Verde:
+                Número correcto y posición correcta
+
+                - Amarillo:
+                Número correcto en posición incorrecta
+
+                - Gris:
+                Número no pertenece a la solución
+                """;
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Instrucciones");
+        alert.setHeaderText("¿Cómo jugar Ooodle?");
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
+    }
+    
     private void mostrarAlerta(String mensaje) {
         new Alert(Alert.AlertType.WARNING, mensaje).showAndWait();
     }
