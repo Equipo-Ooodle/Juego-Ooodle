@@ -1,5 +1,6 @@
 co.edu.poli.ooodle.controller
 co.edu.poli.ooodle.modelo
 co.edu.poli.ooodle.pruebas.integracion
+co.edu.poli.ooodle.pruebas.unitarias
 co.edu.poli.ooodle.servicios
 co.edu.poli.ooodle.vista
