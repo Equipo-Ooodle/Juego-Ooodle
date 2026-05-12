@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"co.edu.poli.ooodle.controller"},{"l":"co.edu.poli.ooodle.modelo"},{"l":"co.edu.poli.ooodle.pruebas.integracion"},{"l":"co.edu.poli.ooodle.servicios"},{"l":"co.edu.poli.ooodle.vista"}];updateSearchResults();

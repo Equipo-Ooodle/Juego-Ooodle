@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="432.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.ooodle.controller.RegistroController">
+<BorderPane prefHeight="432.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.ooodle.controller.RegistroController">
 
     <!-- 🔵 Barra superior -->
     <top>
@@ -28,7 +28,7 @@
             <children>
 
                 <!-- 🟣 TÍTULO -->
-                <Label alignment="TOP_CENTER" maxWidth="Infinity" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Registro">
+                <Label alignment="TOP_CENTER" maxWidth="Infinity" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Registro">
                <font>
                   <Font size="30.0" />
                </font></Label>
@@ -36,17 +36,14 @@
                 <!-- 🧩 FORMULARIO -->
                 <VBox alignment="CENTER" spacing="10">
 
-                    <TextField fx:id="txtNombre" prefWidth="250" promptText="Nombre de usuario" />
+                    <TextField fx:id="txtNombre" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="235.0" promptText="Nombre de usuario" />
 
-                    <PasswordField fx:id="txtContrasena" prefWidth="250" promptText="Contraseña" />
+                    <PasswordField fx:id="txtContrasena" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="238.0" promptText="Contraseña" />
                 </VBox>
 
-                <!-- 🔘 BOTONES -->
-                <VBox alignment="CENTER" spacing="10" />
-
-                 <Button onAction="#handleRegistrar" prefWidth="250" style="-fx-background-color: #dbb6ee; -fx-text-fill: #0e0d15;" text="Registrarse" textFill="#000000ea">
+                 <Button maxWidth="-Infinity" minWidth="-Infinity" onAction="#handleRegistrar" prefHeight="36.0" prefWidth="187.0" style="-fx-background-color: #b57edc; -fx-text-fill: #0e0d15;" text="Registrarse" textFill="#000000ea">
                <font>
-                  <Font size="18.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
 
@@ -55,6 +52,9 @@
                   <Font size="16.0" />
                </font>
             </Button>
+
+                <!-- 🔘 BOTONES -->
+                <VBox alignment="CENTER" spacing="10" />
 
             </children>
         </VBox>

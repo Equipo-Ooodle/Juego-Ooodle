@@ -6,9 +6,24 @@ import java.util.List;
 
 import co.edu.poli.ooodle.modelo.Usuario;
 
+/**
+ * Clase encargada de gestionar las operaciones
+ * de acceso a datos relacionadas con los usuarios.
+ * <p>
+ * Implementa la interfaz {@link CRUD} para realizar
+ * operaciones de creación y consulta de usuarios
+ * almacenados en la base de datos.
+ * </p>
+ */
 public class UsuarioDAO implements CRUD<Usuario> {
 
-    
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param u usuario a registrar
+     * @return mensaje indicando el resultado de la operación
+     * @throws Exception si ocurre un error durante el registro
+     */
     @Override
     public String create(Usuario u) throws Exception {
 
@@ -18,7 +33,7 @@ public class UsuarioDAO implements CRUD<Usuario> {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, u.getNombre());
-            stmt.setString(2, u.getContraseña()); // ya viene hasheada
+            stmt.setString(2, u.getContraseña());
 
             stmt.executeUpdate();
             return "OK";
@@ -29,7 +44,14 @@ public class UsuarioDAO implements CRUD<Usuario> {
         }
     }
 
-    
+    /**
+     * Busca un usuario en la base de datos
+     * mediante su nombre.
+     *
+     * @param nombre nombre del usuario
+     * @return objeto {@link Usuario} encontrado
+     *         o {@code null} si no existe
+     */
     public Usuario buscarPorNombre(String nombre) {
 
         String sql = "SELECT * FROM usuario WHERE nombre = ?";
@@ -55,11 +77,25 @@ public class UsuarioDAO implements CRUD<Usuario> {
         return null;
     }
 
+    /**
+     * Verifica si un usuario existe en la base de datos.
+     *
+     * @param nombre nombre del usuario
+     * @return {@code true} si el usuario existe,
+     *         {@code false} en caso contrario
+     */
     public boolean existeUsuario(String nombre) {
         return buscarPorNombre(nombre) != null;
     }
 
-    
+    /**
+     * Obtiene un usuario mediante su identificador.
+     *
+     * @param id identificador del usuario
+     * @return objeto {@link Usuario} encontrado
+     *         o {@code null} si no existe
+     * @throws Exception si ocurre un error durante la consulta
+     */
     @Override
     public Usuario readone(Object id) throws Exception {
 
@@ -83,7 +119,13 @@ public class UsuarioDAO implements CRUD<Usuario> {
         return null;
     }
 
-    
+    /**
+     * Obtiene todos los usuarios registrados
+     * en la base de datos.
+     *
+     * @return lista de usuarios
+     * @throws Exception si ocurre un error durante la consulta
+     */
     @Override
     public List<Usuario> readall() throws Exception {
 

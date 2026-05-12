@@ -12,17 +12,17 @@
 
 /* 🟢 CORRECTO */
 .verde {
-    -fx-background-color: lightgreen;
+    -fx-background-color: #43702B;
 }
 
 /* 🟡 POSICIÓN INCORRECTA */
 .amarillo {
-    -fx-background-color: khaki;
+    -fx-background-color: #DB8F01;
 }
 
 /* ⚪ NO EXISTE */
 .gris {
-    -fx-background-color: lightgray;
+    -fx-background-color: #74766F;
 }
 
 /* 🔢 BOTONES DEL TECLADO */
@@ -36,29 +36,36 @@
 
 /* 🎨 COLORES DEL TECLADO */
 .tecla-verde {
-    -fx-background-color: lightgreen;
+    -fx-background-color: #43702B;
 }
 
 .tecla-amarillo {
-    -fx-background-color: khaki;
+    -fx-background-color: #DB8F01;
 }
 
 .tecla-gris {
-    -fx-background-color: lightgray;
+    -fx-background-color: #74766F;
 }
 
 /* ➕ OPERADORES ENTRE CASILLAS */
 .operador {
-    -fx-font-size: 22px;
+    -fx-font-size: 25px;
     -fx-font-weight: bold;
 }
+
 
 /* 🎯 RESULTADO DE LA ECUACIÓN */
 .resultado {
     -fx-background-color: #FF9DDA;
     -fx-text-fill: black;
-    -fx-padding: 8 12;
+
+    -fx-pref-width: 75;
+    -fx-pref-height: 75;
+
+    -fx-alignment: center;
+
     -fx-background-radius: 10;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
 }
 
@@ -76,7 +83,7 @@
 
 /* 🔄 BOTÓN RESTART */
 .btn-restart {
-    -fx-background-color: #ff7675;
+    -fx-background-color:  #1D5472;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 10;

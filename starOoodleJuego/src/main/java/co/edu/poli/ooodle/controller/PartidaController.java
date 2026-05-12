@@ -13,44 +13,144 @@ import co.edu.poli.ooodle.modelo.Usuario;
 import co.edu.poli.ooodle.servicios.PartidaDAO;
 import co.edu.poli.ooodle.vista.Principal;
 
+/**
+ * Controlador encargado de gestionar la lógica visual y funcional
+ * de las partidas del juego Ooodle.
+ * <p>
+ * Esta clase administra:
+ * </p>
+ * <ul>
+ *     <li>La creación dinámica del tablero.</li>
+ *     <li>La interacción con el teclado numérico.</li>
+ *     <li>La validación de intentos.</li>
+ *     <li>La actualización visual de resultados.</li>
+ *     <li>El almacenamiento de partidas diarias.</li>
+ *     <li>La navegación entre vistas.</li>
+ * </ul>
+ * 
+ * Interactúa con:
+ * <ul>
+ *     <li>{@link Partida} para la lógica del juego.</li>
+ *     <li>{@link PartidaDAO} para persistencia de datos.</li>
+ *     <li>{@link Principal} para navegación entre escenas.</li>
+ * </ul>
+ * 
+ * @author Mia
+ */
 public class PartidaController {
 
+    /**
+     * Lógica principal de la partida actual.
+     */
     private Partida logica;
+
+    /**
+     * Objeto de acceso a datos para partidas.
+     */
     private PartidaDAO partidaDAO;
+
+    /**
+     * Modo actual de juego.
+     */
     private String modo;
+
+    /**
+     * Referencia a la clase principal de la aplicación.
+     */
     private Principal main;
 
+    /**
+     * Mapa que relaciona números con botones del teclado.
+     */
     private Map<Integer, Button> mapaBotones = new HashMap<>();
+
+    /**
+     * Conjunto de números bloqueados.
+     */
     private Set<Integer> numerosBloqueados = new HashSet<>();
 
     // 🔽 FXML
+
+    /**
+     * Etiqueta de ecuación visible.
+     */
     @FXML private Label lblEcuacion;
+
+    /**
+     * Etiqueta de intentos.
+     */
     @FXML private Label lblIntentos;
+
+    /**
+     * Etiqueta de estado del juego.
+     */
     @FXML private Label lblEstado;
+
+    /**
+     * Contenedor del tablero dinámico.
+     */
     @FXML private VBox contenedorTablero;
+
+    /**
+     * Botón para reiniciar la partida.
+     */
     @FXML private Button btnReintentar;
 
     // 🔢 teclado
+
+    /**
+     * Botones numéricos del teclado.
+     */
     @FXML private Button btn1, btn2, btn3, btn4, btn5, btn6,
                          btn7, btn8, btn9, btn10, btn11, btn12;
 
     // 🧠 TABLERO
+
+    /**
+     * Representación interna del tablero.
+     */
     private List<List<TextField>> tablero = new ArrayList<>();
+
+    /**
+     * Índice de la fila actual.
+     */
     private int filaActual = 0;
+
+    /**
+     * Número máximo de filas permitidas.
+     */
     private final int MAX_FILAS = 6;
+
+    /**
+     * Número de columnas del tablero.
+     */
     private final int COLUMNAS = 4;
 
-    // 🔧 SETTERS
+    /**
+     * Establece la referencia principal de la aplicación.
+     *
+     * @param main instancia principal.
+     */
     public void setMain(Principal main) {
         this.main = main;
     }
 
+    /**
+     * Inicializa la partida.
+     *
+     * @param dao DAO de partidas.
+     * @param usuario usuario actual.
+     * @param modo modo de juego.
+     */
     public void inicializar(PartidaDAO dao, Usuario usuario, String modo) {
         this.partidaDAO = dao;
         this.modo = modo;
         this.logica = new Partida(usuario);
     }
 
+    /**
+     * Inicializa el teclado y los botones del juego.
+     */
     @FXML
     public void initialize() {
         mapaBotones.put(1, btn1);
@@ -67,6 +167,13 @@ public class PartidaController {
         mapaBotones.put(12, btn12);
     }
 
+    /**
+     * Crea dinámicamente el tablero de juego.
+     * <p>
+     * Genera filas, campos de texto, operadores y resultado visible.
+     * También valida que únicamente puedan ingresarse números del 1 al 12.
+     * </p>
+     */
     private void crearTablero() {
 
         contenedorTablero.getChildren().clear();
@@ -88,17 +195,13 @@ public class PartidaController {
                 campo.setPrefSize(75, 75);
                 campo.getStyleClass().add("campo");
 
-                // ✅ Solo fila actual editable
                 campo.setEditable(i == filaActual);
                 campo.setFocusTraversable(false);
 
-                // 🔥 Validación: solo números 1–12
                 campo.textProperty().addListener((obs, oldVal, newVal) -> {
 
-                    // Permitir borrar
                     if (newVal.isEmpty()) return;
 
-                    // Solo dígitos
                     if (!newVal.matches("\\d+")) {
                         campo.setText(oldVal);
                         mostrarAlerta("Solo se permiten números");
@@ -140,7 +243,10 @@ public class PartidaController {
             contenedorTablero.getChildren().add(fila);
         }
     }
-    
+
+    /**
+     * Muestra las instrucciones del juego mediante una alerta.
+     */
     @FXML
     private void handleInstrucciones() {
 
@@ -169,11 +275,19 @@ public class PartidaController {
 
         alert.showAndWait();
     }
-    
+
+    /**
+     * Muestra una alerta de advertencia.
+     *
+     * @param mensaje mensaje mostrado al usuario.
+     */
     private void mostrarAlerta(String mensaje) {
         new Alert(Alert.AlertType.WARNING, mensaje).showAndWait();
     }
-    
+
+    /**
+     * Actualiza qué filas pueden editarse.
+     */
     private void actualizarFilasEditables() {
         for (int i = 0; i < tablero.size(); i++) {
             for (TextField campo : tablero.get(i)) {
@@ -182,13 +296,20 @@ public class PartidaController {
         }
     }
 
+    /**
+     * Carga los datos iniciales del juego.
+     */
     public void cargarDatos() {
         crearTablero();
         lblEcuacion.setText(logica.getEcuacionVisible());
         lblIntentos.setText("Intento 1 de " + MAX_FILAS);
     }
 
-    // 🔢 ESCRIBIR
+    /**
+     * Escribe un número en la fila actual.
+     *
+     * @param numero número seleccionado.
+     */
     private void escribirNumero(String numero) {
 
         List<TextField> fila = tablero.get(filaActual);
@@ -201,13 +322,20 @@ public class PartidaController {
         }
     }
 
+    /**
+     * Maneja la pulsación de botones numéricos.
+     *
+     * @param e evento del botón presionado.
+     */
     @FXML
     private void handleNumero(ActionEvent e) {
         Button btn = (Button) e.getSource();
         escribirNumero(btn.getText());
     }
 
-    // ❌ DELETE
+    /**
+     * Borra el último número ingresado en la fila actual.
+     */
     @FXML
     private void handleDelete() {
 
@@ -223,7 +351,12 @@ public class PartidaController {
         }
     }
 
-    // 🎨 TECLADO
+    /**
+     * Pinta visualmente un botón según el resultado obtenido.
+     *
+     * @param numero número evaluado.
+     * @param estado estado correspondiente.
+     */
     private void pintarBoton(int numero, String estado) {
 
         Button btn = mapaBotones.get(numero);
@@ -249,20 +382,24 @@ public class PartidaController {
         }
     }
 
-    // 🎯 INTENTO
+    /**
+     * Procesa y valida el intento actual del jugador.
+     * <p>
+     * Verifica restricciones, actualiza colores, controla intentos
+     * y determina si el usuario gana o pierde.
+     * </p>
+     */
     @FXML
     private void handleIntentar() {
 
         List<TextField> fila = tablero.get(filaActual);
         Set<Integer> usados = new HashSet<>();
 
-        // ✅ VALIDACIÓN
         for (TextField campo : fila) {
 
             try {
                 int valor = Integer.parseInt(campo.getText());
 
-                // 🔥 RANGO
                 if (valor < 1 || valor > 12) {
                     mostrarAlerta("Solo números del 1 al 12");
                     return;
@@ -335,33 +472,41 @@ public class PartidaController {
             return;
         }
 
-        // 🔥 Actualizar filas activas
         actualizarFilasEditables();
 
         lblIntentos.setText("Intento " + (filaActual + 1) + " de " + MAX_FILAS);
     }
 
-    // 💾 GUARDAR
+    /**
+     * Guarda la partida si pertenece al modo diario.
+     *
+     * @param resultado resultado final de la partida.
+     */
     private void guardarSiEsDiaria(String resultado) {
 
         if (!"diaria".equalsIgnoreCase(modo)) return;
 
         try {
-            
+
             logica.setResultado(resultado);
             partidaDAO.create(logica);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // 🔙 MENU
+    /**
+     * Regresa al menú principal.
+     */
     @FXML
     private void handleMenu() {
         main.mostrarMenu();
     }
 
-    // 🔄 RESTART
+    /**
+     * Reinicia la partida actual.
+     */
     @FXML
     private void handleReintentar() {
         main.mostrarPartida(modo);
